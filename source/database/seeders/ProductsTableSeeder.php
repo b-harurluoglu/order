@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\Product;
+use App\Models\Category;
 use Illuminate\Database\Seeder;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
@@ -16,6 +17,11 @@ class ProductsTableSeeder extends Seeder
     public function run()
     {
         Product::truncate();
-        Product::factory()->count(1000)->create();
+        for ($i=1; $i < 1000; $i++) { 
+            Product::factory()->hasAttached(
+                Category::all()->random(3),
+            )
+            ->create();
+        }
     }
 }
