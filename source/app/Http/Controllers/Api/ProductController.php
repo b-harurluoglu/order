@@ -16,4 +16,9 @@ class ProductController extends Controller
     {
        return $this->successResponse(ProductResource::collection(Product::all()));
     }
+
+    public function show(Product $product)
+    {
+        return $this->successResponse(new ProductResource($product));
+    }
 }
